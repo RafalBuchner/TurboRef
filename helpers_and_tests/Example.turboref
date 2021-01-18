@@ -1,0 +1,46 @@
+elements:
+- fontProperties:
+    font: Georgia
+    size: 14
+  position:
+    x: 200
+    y: 200
+  rotation: 0
+  scale: 1
+  text: Note
+  type: text
+- path: ./images/600-200.png
+  position:
+    x: 100
+    y: 100
+  rotation: 0
+  scale: 1
+  type: image
+- path: ./images/200-1200.png
+  position:
+    x: 100
+    y: 100
+  rotation: 0
+  scale: 1
+  type: image
+- path: ./images/200-400.png
+  position:
+    x: 100
+    y: 100
+  rotation: 0
+  scale: 1
+  type: image
+- path: ./images/300-1100.png
+  position:
+    x: 100
+    y: 100
+  rotation: 0
+  scale: 1
+  type: image
+- path: ./images/600-800.png
+  position:
+    x: 100
+    y: 100
+  rotation: 0
+  scale: 1
+  type: image

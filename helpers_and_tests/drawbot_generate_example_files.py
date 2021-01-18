@@ -77,53 +77,17 @@ for frame in range(NFRAMES):
 saveImage("./images/StackOfSquaresAnimation.gif")
 
 
-### simple image objects
-import os
-
-class TurboElement(object):
-	"""docstring for TurboElement"""
-	def __init__(self, position, scale, rotation):
-		self.position = position
-		self.scale = scale
-		self.rotation = rotation
-
-class TurboTextBox(TurboElement):
-	"""docstring for TurboImage
-		
-		fontProperties:
-
-		fontSize = int
-		fontName = str
-
-	"""
-	def __init__(self, text, fontProperties, position, scale, rotation):
-		super(TurboImage, self).__init__(position, scale, rotation)
-		self.text = text
-		self.fontProperties = fontProperties
-
-class TurboImage(TurboElement):
-	"""docstring for TurboImage"""
-	def __init__(self, path, position, scale, rotation):
-		super(TurboImage, self).__init__(position, scale, rotation)
-		self.pathExists = False
-		self.path = path
-
-	def validatePath(self, value):
-		if if os.path.exist(value):
-			self.pathExists = True
-			value = os.path.abspath(value)
-		else: 
-			self.pathExists = False
-		return value
-	@path.setter
-	def path(self, value):
-		# assert if not a string!!!!
-
-		self.path = path
-
-
 
 if __name__ == "__main__":
-    imageList = [for p in imagePaths]
-		
+	from turboElements import *
+	import pprint, yaml
+	canvas = TurboCanvas((10000,10000))
+	canvas.addTextBox("Note",(200,200))
+	
+	for p in imagePaths:
+		canvas.addImage(p, (100,100))
+	turboFile = "Example.turboref"
+	file_obj = open(turboFile, "w")
+	file_obj.write(yaml.dump(canvas.getDict()))
+	#print(yaml.dump(canvas.getDict()))
 
