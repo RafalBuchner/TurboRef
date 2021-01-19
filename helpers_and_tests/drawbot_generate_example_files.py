@@ -79,15 +79,27 @@ saveImage("./images/StackOfSquaresAnimation.gif")
 
 
 if __name__ == "__main__":
+	import sys
+	sys.path += [os.path.abspath("../lib/turboref/")]
 	from turboElements import *
-	import pprint, yaml
+	import pprint, ruamel.yaml
 	canvas = TurboCanvas((10000,10000))
-	canvas.addTextBox("Note",(200,200))
+	canvas.addTextBox("This is sample text",(200,200))
 	
 	for p in imagePaths:
 		canvas.addImage(p, (100,100))
 	turboFile = "Example.turboref"
 	file_obj = open(turboFile, "w")
-	file_obj.write(yaml.dump(canvas.getDict()))
-	#print(yaml.dump(canvas.getDict()))
 
+
+
+	yaml = ruamel.yaml.YAML()
+	yaml.indent(mapping=4, sequence=8, offset=4)
+	yaml.explicit_start = True
+	yaml.preserve_quotes = True
+	yaml.dump(canvas.getDict(), file_obj)
+	
+
+	turboReference_main = TurboReference()
+	turboReference_main.load(turboFile)
+	yaml.dump(turboReference_main.canvas.getDict(), sys.stdout)
