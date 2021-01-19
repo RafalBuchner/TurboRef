@@ -5,7 +5,7 @@ canvasSize:
     width: 10000
     height: 10000
 elements:
-    -   text: Note
+    -   text: This is sample text
         fontProperties:
             size: 14
             font: Georgia
@@ -20,35 +20,35 @@ elements:
         scale: 1
         rotation: 0
         type: textbox
-    -   path: ./images/400-1100.png
+    -   path: ./images/200-300.png
         position:
             x: 100
             y: 100
         scale: 1
         rotation: 0
         type: image
-    -   path: ./images/200-500.png
+    -   path: ./images/500-800.png
         position:
             x: 100
             y: 100
         scale: 1
         rotation: 0
         type: image
-    -   path: ./images/900-200.png
+    -   path: ./images/1100-200.png
         position:
             x: 100
             y: 100
         scale: 1
         rotation: 0
         type: image
-    -   path: ./images/1000-1200.png
+    -   path: ./images/100-200.png
         position:
             x: 100
             y: 100
         scale: 1
         rotation: 0
         type: image
-    -   path: ./images/700-200.png
+    -   path: ./images/500-1200.png
         position:
             x: 100
             y: 100
