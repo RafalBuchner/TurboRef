@@ -11,4 +11,8 @@ https://stackoverflow.com/questions/35570802/moving-dragging-a-framelesswindow-q
 https://stackoverflow.com/questions/50610346/qt-resize-text-on-qgraphicsscene-after-drawing
 
 ### TODO/info
-- look at trufont glyphview objects, the main area shouldnt be maybe scene, better zoom could be implemented for the widgets
+- rubberband is in the turbogaphicsview. should it be there? maybe there is another, better implementation of it? maybe I should create my own, custom one? IIIIIIIIIIIDOOOONNNNTTTTKNOOOOWWWW
+
+https://stackoverflow.com/questions/46113608/bad-rendering-of-qrubberband-in-qgraphicsscene
+
+maybe I should move all the events to the QGraphicScene?
