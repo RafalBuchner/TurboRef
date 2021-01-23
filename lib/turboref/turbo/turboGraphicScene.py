@@ -15,6 +15,7 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
         super().__init__( rect, parent)
         self.imageItemsDict = {}
         self.textItemsDict = {}
+        self.isCursorHovering = False
 
         if backgroundColor is None:
             # fallback
@@ -61,12 +62,14 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
         x,y = position
         x += self.scrollMargin
         y += self.scrollMargin
-        txtItem = TurboTextItem(text, font, (x, y))
+        txtItem = TurboTextItem(text, font, (x, y), self)
         
         textIndex = len(list(self.textItemsDict.keys()))
         self.textItemsDict[(textIndex, text)] = txtItem
         self.addItem(txtItem)
 
+    def sceneItemHover(self, isHovering):
+        self.isCursorHovering = isHovering
 
     def addImageItem(self, image_path, position):
         """
@@ -78,11 +81,12 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
 
         """
 
-        pixmap = QtGui.QPixmap(image_path)
+        
         x,y = position
         x += self.scrollMargin
         y += self.scrollMargin
-        imgItem = TurboImageItem(pixmap, (x, y))
+        imgItem = TurboImageItem(image_path, (x, y), self)
+        
         imageIndex = len(list(self.imageItemsDict.keys()))
         self.imageItemsDict[(imageIndex, image_path)] = [imgItem]
         self.addItem(imgItem)

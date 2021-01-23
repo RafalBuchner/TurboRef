@@ -97,7 +97,7 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
     # -------------------------------------------
 
     def mousePressEvent(self, event):
-        if event.button() == QtCore.Qt.LeftButton:
+        if event.button() == QtCore.Qt.LeftButton and not self.scene().isCursorHovering:
 
             self.origin = event.pos()
             self.rubberBand.setGeometry(QtCore.QRect(self.origin, QtCore.QSize()))
@@ -122,7 +122,6 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
         super(TurboGraphicView, self).mousePressEvent(event)
         
     def mouseReleaseEvent(self, event):
-
         if event.button() == QtCore.Qt.LeftButton:
             self.changeRubberBand = False
             self.rubberBand.hide()
