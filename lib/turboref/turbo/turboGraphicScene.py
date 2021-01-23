@@ -92,10 +92,10 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
     # -------------------------------------------
 
     def mousePressEvent(self, event):
-        pass
+        super().mousePressEvent(event)
 
     def mouseReleaseEvent(self, event):
-        pass
-
+        super().mouseReleaseEvent(event)
+        
     def mouseMoveEvent(self, event):
-        pass
+        super().mouseMoveEvent(event)
