@@ -5,7 +5,9 @@ from copy import deepcopy
 SETTINGS = TurboSettingsParser() # most of the settings will be defined in the turbo files, those should be used as a fallback
 
 class TurboGraphicScene(QtWidgets.QGraphicsScene):
+    
     scrollMargin = SETTINGS.getSetting('scrollMargin')
+    
     def __init__(self, rect, parent, backgroundColor=None):
         sceneRect = deepcopy(rect)
         rect.setWidth(self.scrollMargin + rect.width())
@@ -32,6 +34,10 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
         image_path = '/Users/workstatiWorkstationon/Dropbox/game-art-stuff/anatomy/face-ref/skull/EuropeanSkull-2.jpg'
         self.addImageItem(image_path, (100,100))
         self.addTextItem("Nogi", (100,100))
+
+
+    def setView(self, view):
+        self.view = view
 
     def setCanvasSize(self, w, h):
         pass
@@ -80,3 +86,16 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
         imageIndex = len(list(self.imageItemsDict.keys()))
         self.imageItemsDict[(imageIndex, image_path)] = [imgItem]
         self.addItem(imgItem)
+
+    # -------------------------------------------
+    # events
+    # -------------------------------------------
+
+    def mousePressEvent(self, event):
+        pass
+
+    def mouseReleaseEvent(self, event):
+        pass
+
+    def mouseMoveEvent(self, event):
+        pass

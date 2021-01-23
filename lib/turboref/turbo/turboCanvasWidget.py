@@ -40,9 +40,9 @@ class TurboWidget(QWidget):
 
         self._scrollArea = None
 
-    # --------------
+    # -------------------------------------------
     # Custom Methods
-    # --------------
+    # -------------------------------------------
 
     def drawingRect(self):
         return self._drawingRect
@@ -210,9 +210,9 @@ class TurboView(QGraphicsView):
 
         # self.pointSizeModified = self._turboWidget.pointSizeModified
 
-    # -------------
+    # --------------------------
     # Public Methods
-    # -------------
+    # --------------------------
 
     def scale(self):
         return self._turboWidget.scale()

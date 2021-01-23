@@ -37,9 +37,9 @@ class TurboSettingsParser(object):
             os.mkdir(TURBO_DIR)
         self.load()
 
-    # ------------------------------
+    # -------------------------------------------
     # Public Methods
-    # ------------------------------
+    # -------------------------------------------
 
     def save(self):
         self.__save()
@@ -48,9 +48,9 @@ class TurboSettingsParser(object):
     def load(self):
         self.__load()
 
-    # ------------------------------
+    # -------------------------------------------
     # Private Methods
-    # ------------------------------
+    # -------------------------------------------
 
     def __save(self):
         if not self._configObjLoaded:

@@ -12,6 +12,7 @@ class MainWindow(FramelessMainWindow):
         
         self.m_scene = TurboGraphicScene(QtCore.QRectF(0, 0, canvasSize[0], canvasSize[1]), self)
         self.m_graphicsview = TurboGraphicView(self.m_scene)
+        self.m_scene.setView(self.m_graphicsview)
         self.resize(640, 480)
         self.setCentralWidget(self.m_graphicsview)
 

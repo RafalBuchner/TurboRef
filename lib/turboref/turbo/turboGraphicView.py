@@ -84,10 +84,17 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
 
 
 
+    # -------------------------------------------
+    # slots/signals
+    # -------------------------------------------
 
     def timeForContextMenuIsOut(self):
         if self.windowRecievingDragAction:
             self.windowIsMoving = True
+
+    # -------------------------------------------
+    # events
+    # -------------------------------------------
 
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
@@ -115,7 +122,6 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
         super(TurboGraphicView, self).mousePressEvent(event)
         
     def mouseReleaseEvent(self, event):
-        # if self.rubberband.isVisible():
         if event.button() == QtCore.Qt.LeftButton:
             self.changeRubberBand = False
             self.rubberBand.hide()
@@ -138,7 +144,7 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
         super(TurboGraphicView, self).mouseReleaseEvent(event)
         
     def mouseMoveEvent(self, event):
-        if self.changeRubberBand:
+        if self.changeRubberBand and event.button() == QtCore.Qt.LeftButton:
             self.rubberBand.setGeometry(QtCore.QRect(self.origin, event.pos()).normalized())
             self.rectChanged.emit(self.rubberBand.geometry())
             QtWidgets.QGraphicsView.mouseMoveEvent(self,event)
@@ -160,9 +166,9 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
             self.setDragMode(QtWidgets.QGraphicsView.NoDrag)
             self.setInteractive(True)
 
-    # -------------
+    # -------------------------------------------
     # right click menu
-    # -------------
+    # -------------------------------------------
     
     def buildRightClickMenu(self, contextMenuEvent):
         self.windowRecievingDragAction = False
@@ -173,9 +179,10 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
             contextMenuSystem.generalContextMenu(contextMenuEvent)
 
         
-    # -------------
+    # -------------------------------------------
     # public methods
-    # -------------
+    # -------------------------------------------
+
     def getScale(self):
         return self._scale
 
