@@ -81,6 +81,7 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
             QtWidgets.QRubberBand.Rectangle, self)
         self.origin = QtCore.QPoint()
         self.changeRubberBand = False
+        self.allowRubberBand = True
 
 
 
@@ -97,8 +98,16 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
     # -------------------------------------------
 
     def mousePressEvent(self, event):
-        if event.button() == QtCore.Qt.LeftButton and not self.scene().isCursorHovering:
+        
+        if event.button() == QtCore.Qt.MidButton:
+            self.allowRubberBand = False
+            self.setDragMode(self.ScrollHandDrag)
+            self.original_event = event
+            handmade_event = QtGui.QMouseEvent(QtCore.QEvent.MouseButtonPress,QtCore.QPointF(event.pos()),QtCore.Qt.LeftButton,event.buttons(),QtCore.Qt.KeyboardModifiers())
+            self.mousePressEvent(handmade_event)
 
+        
+        elif event.button() == QtCore.Qt.LeftButton and not self.scene().isCursorHovering and self.allowRubberBand:
             self.origin = event.pos()
             self.rubberBand.setGeometry(QtCore.QRect(self.origin, QtCore.QSize()))
             self.rectChanged.emit(self.rubberBand.geometry())
@@ -106,12 +115,6 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
             self.changeRubberBand = True
             return
             # QtWidgets.QGraphicsView.mousePressEvent(self, event)
-        if event.button() == QtCore.Qt.MidButton:
-            self.setDragMode(self.ScrollHandDrag)
-            self.original_event = event
-            handmade_event = QtGui.QMouseEvent(QtCore.QEvent.MouseButtonPress,QtCore.QPointF(event.pos()),QtCore.Qt.LeftButton,event.buttons(),QtCore.Qt.KeyboardModifiers())
-            self.mousePressEvent(handmade_event)
-        
         elif event.button() == QtCore.Qt.RightButton:
             # move Window
             self.m_nMouseClick_X_Coordinate = event.x()
@@ -140,6 +143,7 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
                 self.windowRecievingDragAction = False
             else:
                 self.buildRightClickMenu(event)
+        self.allowRubberBand = True
 
         super(TurboGraphicView, self).mouseReleaseEvent(event)
         
