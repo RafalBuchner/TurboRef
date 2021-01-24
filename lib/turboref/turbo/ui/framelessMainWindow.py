@@ -20,9 +20,6 @@ class SideGrip(QtWidgets.QWidget):
         self.mousePos = None
         self.setColor()
 
-
-
-
     def setColor(self):
         stylesheet =  """
                     QWidget{
@@ -70,7 +67,7 @@ class SideGrip(QtWidgets.QWidget):
 
 
 class FramelessMainWindow(QtWidgets.QMainWindow):
-    _gripSize = 5
+    _gripSize = 4
     def __init__(self, parent=None):
 
         super(FramelessMainWindow, self).__init__(parent)
@@ -107,17 +104,29 @@ class FramelessMainWindow(QtWidgets.QMainWindow):
             -self.gripSize, -self.gripSize)
 
         # top left
+        topLeftRect = QtCore.QRect(outRect.topLeft(), inRect.topLeft())
+        topLeftRect.setSize(QtCore.QSize(self._gripSize*2, self._gripSize*2))
         self.cornerGrips[0].setGeometry(
-            QtCore.QRect(outRect.topLeft(), inRect.topLeft()))
+                                    topLeftRect
+            )
         # top right
+        topRightRect = QtCore.QRect(outRect.topRight(), inRect.topRight()).normalized()
+        topRightRect.setSize(QtCore.QSize(self._gripSize*2, self._gripSize*2))
         self.cornerGrips[1].setGeometry(
-            QtCore.QRect(outRect.topRight(), inRect.topRight()).normalized())
+                                    topRightRect
+            )
         # bottom right
+        bottomRightRect = QtCore.QRect(inRect.bottomRight(), outRect.bottomRight())
+        bottomRightRect.setSize(QtCore.QSize(self._gripSize*2, self._gripSize*2))
         self.cornerGrips[2].setGeometry(
-            QtCore.QRect(inRect.bottomRight(), outRect.bottomRight()))
+                                    bottomRightRect
+            )
         # bottom left
+        bottomLeftRect = QtCore.QRect(outRect.bottomLeft(), inRect.bottomLeft()).normalized()
+        bottomLeftRect.setSize(QtCore.QSize(self._gripSize*2, self._gripSize*2))
         self.cornerGrips[3].setGeometry(
-            QtCore.QRect(outRect.bottomLeft(), inRect.bottomLeft()).normalized())
+                                    bottomLeftRect
+            )
 
         # left edge
         self.sideGrips[0].setGeometry(

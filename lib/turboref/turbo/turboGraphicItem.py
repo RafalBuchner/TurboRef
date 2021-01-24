@@ -25,6 +25,16 @@ class TurboImageItem(QtWidgets.QGraphicsPixmapItem):
     def hoverLeaveEvent(self, event):
         self.scene.sceneItemHover(False)
         super().hoverEnterEvent(event)
+
+    def paint(self, painter, option, index):
+        super().paint(painter, option, index)
+        if self.isSelected():
+            pen = QtGui.QPen()
+            pen.setWidth(5 / self.scene.view.getScale())
+            pen.setColor(QtGui.QColor(0,240,100)) # settings
+            painter.setPen(pen)
+            painter.drawRect(self.boundingRect())
+            self.scene.update()
    
 
 
@@ -53,6 +63,15 @@ class TurboTextItem(QtWidgets.QGraphicsTextItem):
     def hoverLeaveEvent(self, event):
         self.scene.sceneItemHover(False)
         super().hoverEnterEvent(event)
-   
+
+    def paint(self, painter, option, index):
+        super().paint(painter, option, index)
+        if self.isSelected():
+            pen = QtGui.QPen()
+            pen.setWidth(5 / self.scene.view.getScale())
+            pen.setColor(QtGui.QColor(0,240,100)) # settings
+            painter.setPen(pen)
+            painter.drawRect(self.boundingRect())
+            self.scene.update()
 
         
