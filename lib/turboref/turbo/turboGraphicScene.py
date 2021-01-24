@@ -29,6 +29,7 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
 
         sceneRect.setX(sceneRect.x() + self.scrollMargin)
         sceneRect.setY(sceneRect.y() + self.scrollMargin)
+        print(rect.width(),rect.height())
 
         self.addRect(sceneRect, brush=QtGui.QBrush(QtGui.QColor(30.5, 10.5, 30.5))) 
         ## test

@@ -83,6 +83,8 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
         self.changeRubberBand = False
         self.allowRubberBand = True
 
+        self.rectChanged.connect(self.selectionRectChanged)   
+
 
 
     # -------------------------------------------
@@ -110,7 +112,8 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
         elif event.button() == QtCore.Qt.LeftButton and not self.scene().isCursorHovering and self.allowRubberBand:
             self.origin = event.pos()
             self.rubberBand.setGeometry(QtCore.QRect(self.origin, QtCore.QSize()))
-            self.rectChanged.emit(self.rubberBand.geometry())
+            self.rectChanged.emit(self.rubberBand.geometry())      
+               
             self.rubberBand.show()
             self.changeRubberBand = True
             return
@@ -123,7 +126,11 @@ class TurboGraphicView(QtWidgets.QGraphicsView):
             QtCore.QTimer.singleShot(150,self.timeForContextMenuIsOut)
 
         super(TurboGraphicView, self).mousePressEvent(event)
-        
+    def selectionRectChanged(self, geometry):
+        selectionPath = QtGui.QPainterPath()
+        selectionRect = self.mapToScene(geometry)
+        selectionPath.addPolygon(selectionRect)
+        self.scene().setSelectionArea( selectionPath )
     def mouseReleaseEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
             self.changeRubberBand = False

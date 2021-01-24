@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class SideGrip(QtWidgets.QWidget):
     def __init__(self, parent, edge):
         QtWidgets.QWidget.__init__(self, parent)
+        self.setColor()
         if edge == QtCore.Qt.LeftEdge:
             self.setCursor(QtCore.Qt.SizeHorCursor)
             self.resizeFunc = self.resizeLeft
@@ -17,11 +18,16 @@ class SideGrip(QtWidgets.QWidget):
             self.setCursor(QtCore.Qt.SizeVerCursor)
             self.resizeFunc = self.resizeBottom
         self.mousePos = None
+        self.setColor()
+
+
 
 
     def setColor(self):
-        stylesheet = """ 
-                    QWidget{background: black;}
+        stylesheet =  """
+                    QWidget{
+                        background-color: red;border: 0px solid black
+                    }
                     """
 
         self.setStyleSheet(stylesheet)
@@ -64,7 +70,7 @@ class SideGrip(QtWidgets.QWidget):
 
 
 class FramelessMainWindow(QtWidgets.QMainWindow):
-    _gripSize = 4
+    _gripSize = 5
     def __init__(self, parent=None):
 
         super(FramelessMainWindow, self).__init__(parent)
@@ -132,17 +138,7 @@ class FramelessMainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMainWindow.resizeEvent(self, event)
         self.updateGrips()
 
-    """
-    move event for the main window
-    https://stackoverflow.com/questions/35570802/moving-dragging-a-framelesswindow-qt
-    """
-    # def mousePressEvent(self, event):
-    #     self.m_nMouseClick_X_Coordinate = event.x()
-    #     self.m_nMouseClick_Y_Coordinate = event.y()
 
-    # def mouseMoveEvent(self, event):
-    #     print("move")
-    #     self.move(event.globalX() - self.m_nMouseClick_X_Coordinate, event.globalY()-self.m_nMouseClick_Y_Coordinate)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
