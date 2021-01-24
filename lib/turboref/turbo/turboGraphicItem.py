@@ -38,7 +38,6 @@ def itemSelectionPaint(self, painter, option, index):
 
 class TurboImageItem(QtWidgets.QGraphicsPixmapItem):
     """docstring for TurboImageItem"""
-    
     def __init__(self, path, position, scene):
         # pixmap = pixmap.scaled(QtCore.QSize(1000, 1000))
         self.scene = scene
