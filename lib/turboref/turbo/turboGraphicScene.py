@@ -31,7 +31,7 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
         sceneRect.setY(sceneRect.y() + self.scrollMargin)
         print(rect.width(),rect.height())
 
-        self.addRect(sceneRect, brush=QtGui.QBrush(QtGui.QColor(30.5, 10.5, 30.5))) 
+        self.addRect(sceneRect, brush=QtGui.QBrush(QtGui.QColor(35, 35, 35))) 
         ## test
         image_path = '/Users/workstatiWorkstationon/Dropbox/game-art-stuff/anatomy/face-ref/skull/EuropeanSkull-2.jpg'
         self.addImageItem(image_path, (100,100))
