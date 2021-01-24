@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
-
+from turbo.ui.resizableItems import ResizableGraphicsPixmapItem
 
 SELECTION_COLOR = QtGui.QColor(0,240,100) ###SETTINGS
 CORNER_SIZE = 12
@@ -7,7 +7,7 @@ STROKE_WIDTH = 3
 
 def itemSelectionPaint(self, painter, option, index):
         if self.isSelected():
-
+            
             boundingRect = self.boundingRect()
             pen = QtGui.QPen()
             pen.setWidth(STROKE_WIDTH / self.scene.view.getScale())
@@ -36,7 +36,8 @@ def itemSelectionPaint(self, painter, option, index):
 
             self.scene.update()
 
-class TurboImageItem(QtWidgets.QGraphicsPixmapItem):
+# class TurboImageItem(QtWidgets.QGraphicsPixmapItem):
+class TurboImageItem(ResizableGraphicsPixmapItem):
     """docstring for TurboImageItem"""
     def __init__(self, path, position, scene):
         # pixmap = pixmap.scaled(QtCore.QSize(1000, 1000))

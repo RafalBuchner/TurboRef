@@ -16,6 +16,7 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
         self.imageItemsDict = {}
         self.textItemsDict = {}
         self.isCursorHovering = False
+        self.selectionChanged.connect(self.selectionChangedCallback)
 
         if backgroundColor is None:
             # fallback
@@ -41,6 +42,9 @@ class TurboGraphicScene(QtWidgets.QGraphicsScene):
     def setView(self, view):
         self.view = view
 
+    def selectionChangedCallback(self):
+        print(self.selectedItems())
+        
     def setCanvasSize(self, w, h):
         pass
 
